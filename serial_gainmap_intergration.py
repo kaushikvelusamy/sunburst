@@ -87,35 +87,37 @@ save_2d_array = "sunburst/Gain_corrected/xydataset.txt"
 ### First: .xy files 
 ### Second:  1 .txt file 
 
-all_images = glob.glob(raw_tiff_dir)
-#########Set up intergration#########
-#Loads the calibration files
-ai = pyFAI.load(poni_file)
-#Loads pilatus information for calibration
-pilatus = pyFAI.detector_factory('PilatusCdTe2M')
-#Loads mask for detector gaps
-mask = pilatus.mask
-#adds dead pixels to mask
-mask[1127,1161] =-1
-mask[1505:1507,1370:1373] =-1
-mask[733,437] =-1
+def integration()
 
-###intialize list for integrated data
-#xy_dataint = []
-xy_array = np.empty((len(all_images), 2500, 3)) # initialising on numpy array
-for images_num in tqdm(range(len(all_images))):
-    #returns each filename.tif
-    one_image = all_images[images_num]
-    #returns the sequence number of the file
-    image_ind = str(one_image[-9:-4])
-    xy_array[images_num,:,0] = image_ind
-    fimg = fabio.open(one_image)
-    dest = os.path.splitext(one_image)[0] + ".xy"
-    res = ai.integrate1d(fimg.data, 2500, unit="2th_deg",mask=mask, filename=dest) # This is where .xy file is created and saved
-    xy_array[images_num,:,1] = res[0]
-    xy_array[images_num,:,2] = res[1]
+    all_images = glob.glob(raw_tiff_dir)
+    #########Set up intergration#########
+    #Loads the calibration files
+    ai = pyFAI.load(poni_file)
+    #Loads pilatus information for calibration
+    pilatus = pyFAI.detector_factory('PilatusCdTe2M')
+    #Loads mask for detector gaps
+    mask = pilatus.mask
+    #adds dead pixels to mask
+    mask[1127,1161] =-1
+    mask[1505:1507,1370:1373] =-1
+    mask[733,437] =-1
 
-xy_data2d = np.reshape(xy_array, ((xy_array.shape[0]*xy_array.shape[1]), 3))
-np.savetxt(save_2d_array, xy_data2d, delimiter=' ')
+    ###intialize list for integrated data
+    #xy_dataint = []
+    xy_array = np.empty((len(all_images), 2500, 3)) # initialising on numpy array
+    for images_num in tqdm(range(len(all_images))):
+        #returns each filename.tif
+        one_image = all_images[images_num]
+        #returns the sequence number of the file
+        image_ind = str(one_image[-9:-4])
+        xy_array[images_num,:,0] = image_ind
+        fimg = fabio.open(one_image)
+        dest = os.path.splitext(one_image)[0] + ".xy"
+        res = ai.integrate1d(fimg.data, 2500, unit="2th_deg",mask=mask, filename=dest) # This is where .xy file is created and saved
+        xy_array[images_num,:,1] = res[0]
+        xy_array[images_num,:,2] = res[1]
 
-## -------------------- stage 2: Integration stage ends here --------------------
+    xy_data2d = np.reshape(xy_array, ((xy_array.shape[0]*xy_array.shape[1]), 3))
+    np.savetxt(save_2d_array, xy_data2d, delimiter=' ')
+
+    ## -------------------- stage 2: Integration stage ends here --------------------
