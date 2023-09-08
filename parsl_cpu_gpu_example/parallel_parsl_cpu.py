@@ -1,5 +1,6 @@
 import parsl
 from parsl import python_app
+from polaris_config import config
 
 # Scripts adapted from Parsl docs
 # https://parsl.readthedocs.io/en/stable/1-parsl-introduction.html
@@ -12,7 +13,7 @@ def generate(limit,delay):
     time.sleep(delay)
     return randint(1,limit)
 
-parsl.load()
+parsl.load(config)
 
 # Generate 5 random numbers between 1 and 10
 rand_nums = []

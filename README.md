@@ -42,11 +42,18 @@ Time expected for 75K files : ~7 hours.
 
 ### Steps to run
 
+# one time setup
 `module load conda`
 
 `conda activate`
 
+`python -m venv --system-site-packages /lus/grand/projects/datascience/kaushikv/parsl-aps/sunburst/pyenv/`
+
+`source /lus/grand/projects/datascience/kaushikv/parsl-aps/sunburst/pyenv/bin/activate`
+
 `pip install --upgrade pip`
+
+`pip install parsl`
 
 `pip install pyfai`
 
