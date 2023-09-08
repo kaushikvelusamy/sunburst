@@ -38,3 +38,37 @@ a CBF file is not same as tiff files but go through similar process – less spa
 First experiment : 15,000 tiff files that’s passed to the step 1
 Time taken for 15K files : 80 mins approx.
 Time expected for 75K files : ~7 hours.
+
+
+### Steps to run
+
+`module load conda`
+
+`conda activate`
+
+`pip install --upgrade pip`
+
+`pip install pyfai`
+
+`pip install PyQt5` #should not be needed
+
+
+Create the directory structure for input and output files
+
+compound         = "cono32"
+
+dataset          = "cono32_20v_2s_6_00001"  
+
+directory_src    = "/lus/grand/projects/datascience/kaushikv/parsl-aps/sunburst/test_dir_samples/PETRA/"
+
+ponifile         = directory_src + "geometryNiAl.poni"
+
+import_directory = directory_src + "insitu/" + dataset + "/"
+
+export_path      = directory_src + "integrated/" + compound + "/insitu/" + dataset
+
+
+
+`python intergration_petra_insitu_v3.py 0` # To save the plot
+
+`python intergration_petra_insitu_v3.py 1` # Just conversion -not saving the plot
