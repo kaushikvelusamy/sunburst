@@ -79,3 +79,16 @@ export_path      = directory_src + "integrated/" + compound + "/insitu/" + datas
 `python intergration_petra_insitu_v3.py 0` # To save the plot
 
 `python intergration_petra_insitu_v3.py 1` # Just conversion -not saving the plot
+
+
+update the run_dir parameter in the parsl config file 
+
+Questions
+1. Files - data provider - passing an entire directory of input files
+2. remote cpu vs gpu configs - which parameter in gpu makes it run on gpu instead of cpu threads
+3. visualization and parsl progress board 
+4. common way to find the max workers for all types of configs.
+5. worker init pyfai env from local threads built in, non built in 
+
+
+
