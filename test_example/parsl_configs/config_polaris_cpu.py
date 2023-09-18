@@ -3,7 +3,7 @@ from parsl.executors import HighThroughputExecutor
 from parsl.addresses import address_by_interface
 from parsl.providers import PBSProProvider
 from parsl.launchers import MpiExecLauncher, GnuParallelLauncher
- 
+from parsl.monitoring.monitoring import MonitoringHub
 
 num_nodes = 1
 
@@ -53,7 +53,12 @@ config = Config(
                                                                                             ),
                                                                 ),
                                             ],
-                    run_dir          = run_dir,
+                    #run_dir          = run_dir,
                     retries          = 2,
-                    app_cache        = False
+                    app_cache        = False,
+                    monitoring  =   MonitoringHub(  hub_address                 =   address_by_interface("bond0"),
+                                                    hub_port                    =   55055,
+                                                    monitoring_debug            =   False,
+                                                    resource_monitoring_interval=   10,
+                                                )
 )

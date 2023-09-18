@@ -2,12 +2,14 @@ from parsl.config import Config
 from parsl.executors import HighThroughputExecutor
 from parsl.providers import LocalProvider
 from parsl.channels import LocalChannel
+from parsl.monitoring.monitoring import MonitoringHub
+from parsl.addresses import address_by_interface
 
 # Adjust your user-specific options here:
-run_dir =   "/lus/grand/projects/datascience/kaushikv/parsl-aps/sunburst/test_example"
+#run_dir =   "/lus/grand/projects/datascience/kaushikv/parsl-aps/sunburst/test_example"
 
 user_opts = {
-    "worker_init"  : f"source /lus/grand/projects/datascience/kaushikv/parsl-aps/sunburst/pyenv/bin/activate; cd {run_dir}", # load the environment where parsl is installed
+    "worker_init"  : f"source /lus/grand/projects/datascience/kaushikv/parsl-aps/sunburst/pyenv/bin/activate; ", # load the environment where parsl is installed
 }
 
 config = Config( executors=[ HighThroughputExecutor( label           = "htex_Local",
@@ -21,5 +23,10 @@ config = Config( executors=[ HighThroughputExecutor( label           = "htex_Loc
                                                     )
                            ],
                  strategy = None,
-                 run_dir  = run_dir
+                 #run_dir  = run_dir,
+                 monitoring  =  MonitoringHub(  hub_address =   address_by_interface("bond0"),
+                                hub_port                    =   55055,
+                                monitoring_debug            =   False,
+                                resource_monitoring_interval=   10,
+                            )
                 )

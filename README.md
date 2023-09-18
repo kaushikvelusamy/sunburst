@@ -12,30 +12,30 @@
 
 Input:
 
- - Single .tiff file that contains the data to do the gain correction
- - Multiple .tiff files that are the actual (RAW) data
+ - Single .tif file that contains the data to do the gain correction
+ - Multiple .tif files that are the actual (RAW) data
 
 Output:
 
- - Multiple .tiff files that are the corrected data. 
+ - Multiple .tif files that are the corrected data. 
  - This is saved in a directory that you define
 
 ### Step 2: Integration using PyFAI
 
 Input:
 
-- Multiple .tiff files that are the corrected data from the output of step 1
+- Multiple .tif files that are the corrected data from the output of step 1
 - A .poni file. This is a calibration file
 
 Output:
 
-- An .xy file for each .tiff file in input (Saved in the save directory is the output in step 1) 
+- An .xy file for each .tif file in input (Saved in the save directory is the output in step 1) 
 - A single .txt file containing all the data from the .xy files
   
 
-a CBF file is not same as tiff files but go through similar process – less space than tiff.
+a CBF file is not same as tif files but go through similar process – less space than tif.
 ( collecting 250 CBF files in a second)
-First experiment : 15,000 tiff files that’s passed to the step 1
+First experiment : 15,000 tif files that’s passed to the step 1
 Time taken for 15K files : 80 mins approx.
 Time expected for 75K files : ~7 hours.
 
@@ -49,7 +49,7 @@ Time expected for 75K files : ~7 hours.
 
 `python -m venv --system-site-packages /lus/grand/projects/datascience/kaushikv/parsl-aps/sunburst/pyenv/`
 
-`source /lus/grand/projects/datascience/kaushikv/parsl-aps/sunburst/pyenv/bin/activate`
+`source /lus/grand/projects/datascience/kaushikv/parsl-aps/sunburst/pyenv/bin/activate` [Needs to be run everytime]
 
 `pip install --upgrade pip`
 
@@ -59,6 +59,18 @@ Time expected for 75K files : ~7 hours.
 
 `pip install PyQt5` #should not be needed
 
+
+
+
+Just run python parsl_petra.py with the localthreads pilot or remote cpu or remote gpu configuration
+
+For monitoring hub dont give run dir
+
+
+
+
+
+# for the test program 
 
 Create the directory structure for input and output files
 
@@ -76,19 +88,4 @@ export_path      = directory_src + "integrated/" + compound + "/insitu/" + datas
 
 
 
-`python intergration_petra_insitu_v3.py 0` # To save the plot
-
-`python intergration_petra_insitu_v3.py 1` # Just conversion -not saving the plot
-
-
 update the run_dir parameter in the parsl config file 
-
-Questions
-1. Files - data provider - passing an entire directory of input files
-2. remote cpu vs gpu configs - which parameter in gpu makes it run on gpu instead of cpu threads
-3. visualization and parsl progress board 
-4. common way to find the max workers for all types of configs.
-5. worker init pyfai env from local threads built in, non built in 
-
-
-
