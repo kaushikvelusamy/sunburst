@@ -7,7 +7,7 @@ from parsl.providers import LocalProvider
 run_dir =   "/lus/grand/projects/datascience/kaushikv/parsl-aps/sunburst/parsl_integration"
 
 user_opts = {
-    "worker_init"  : f"source /lus/grand/projects/datascience/kaushikv/parsl-aps/sunburst/pyenv/bin/activate; cd {run_dir}", # load the environment where parsl is installed
+    "worker_init"  : f"source /lus/grand/projects/datascience/kaushikv/parsl-aps/sunburst/parsl-pyenv/bin/activate; cd {run_dir}", # load the environment where parsl is installed
 }
 
 config = Config( executors=[ ThreadPoolExecutor(  max_threads = 8, 

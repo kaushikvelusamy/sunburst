@@ -9,7 +9,7 @@ from parsl.addresses import address_by_interface
 #run_dir =   "/lus/grand/projects/datascience/kaushikv/parsl-aps/sunburst/test_example"
 
 user_opts = {
-    "worker_init"  : f"source /lus/grand/projects/datascience/kaushikv/parsl-aps/sunburst/pyenv/bin/activate; ", # load the environment where parsl is installed
+    "worker_init"  : f"source /lus/grand/projects/datascience/kaushikv/parsl-aps/sunburst/parsl-pyenv/bin/activate; ", # load the environment where parsl is installed
 }
 
 config = Config( executors=[ HighThroughputExecutor( label           = "htex_Local",
@@ -26,7 +26,7 @@ config = Config( executors=[ HighThroughputExecutor( label           = "htex_Loc
                  #run_dir  = run_dir,
                  monitoring  =  MonitoringHub(  hub_address =   address_by_interface("bond0"),
                                 hub_port                    =   55055,
-                                monitoring_debug            =   False,
+                                monitoring_debug            =   True,
                                 resource_monitoring_interval=   10,
                             )
                 )

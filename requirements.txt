@@ -1,0 +1,18 @@
+parsl
+
+#For the app
+pyFAI==2023.8.0
+numexpr==2.8.5
+PyQt5
+
+#for the parsl monitoring
+flask
+flask_sqlalchemy
+SQLAlchemy
+pandas
+plotly
+networkx
+scikit-image
+imread
+tqdm
+pydot

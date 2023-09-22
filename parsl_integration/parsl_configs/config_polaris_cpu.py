@@ -11,7 +11,7 @@ num_nodes = 1
 run_dir =   "/lus/grand/projects/datascience/kaushikv/parsl-aps/sunburst/parsl_integration"
 
 user_opts = {
-    "worker_init"           : f"source /lus/grand/projects/datascience/kaushikv/parsl-aps/sunburst/pyenv/bin/activate; cd {run_dir}", # load the environment where parsl is installed
+    "worker_init"           : f"source /lus/grand/projects/datascience/kaushikv/parsl-aps/sunburst/parsl-pyenv/bin/activate; cd {run_dir}", # load the environment where parsl is installed
     "scheduler_options"     : "#PBS -l filesystems=home:grand" ,                             # specify any PBS options here, like filesystems
     "account"               : "datascience",
     "queue"                 : "debug-scaling",

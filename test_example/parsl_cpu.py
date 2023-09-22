@@ -6,8 +6,8 @@ from parsl import python_app
 
 #from parsl.configs.local_threads import config
 #from parsl_configs.config_local_threads import config
-#from parsl_configs.config_local_threads_pilot import config
-from parsl_configs.config_polaris_cpu import config, user_opts
+from parsl_configs.config_local_threads_pilot import config
+# from parsl_configs.config_polaris_cpu import config, user_opts
 #from parsl_configs.config_polaris_gpu import config, user_opts
 
 #parsl.set_stream_logger() # <-- log everything to stdout
@@ -20,7 +20,7 @@ parsl.load(config)
 def generate(limit,delay):
     from random import randint
     import time
-    #import PyFai
+    import pyFAI
     time.sleep(delay)
     return randint(1,limit)
 
